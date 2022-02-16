@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import * as io from 'socket.io-client'
 
-import * as io from 'socket.io-client';
+type TValue = {
+  value: string;
+  board: string;
+};
 
-
-export class LastValue extends Component<{}, {value: string, board: string}> {
+export class LastValue extends Component<{socket: io.Socket}, TValue> {
 	constructor(props: any){
 		super(props);
 		this.state = {
@@ -13,8 +16,8 @@ export class LastValue extends Component<{}, {value: string, board: string}> {
 	}
 
 	async componentDidMount(){
-		const socket = io.connect('ws://localhost:4000', { transports : ['websocket'] });
-		socket.on('new-tvalue', (tvalue) => {
+    const socket = this.props.socket;
+		socket.on('new-tvalue', (tvalue: TValue) => {
       this.setState({
         value: tvalue.value,
         board: data.boardId
@@ -33,16 +36,18 @@ export class LastValue extends Component<{}, {value: string, board: string}> {
 		this.setState({
 			value: data.value,
 			board: data.boardId
-		}) 
+		}); 
 	}
 
 	render() {
-		const value: string = this.state.value;
-		const board: string = this.state.board;
+		const tvalue: TValue = {
+      value: this.state.value,
+      board: this.state.board
+    }
 		return (
 			<p className='lastValue'>
-				{value} from board- 
-				{board}
+				{tvalue.value} from board- 
+				{tvalue.board}
 			</p>
 		);
 	}
