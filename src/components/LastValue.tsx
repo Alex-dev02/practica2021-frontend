@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import * as io from 'socket.io-client'
 
 type TValue = {
@@ -24,7 +24,8 @@ export class LastValue extends Component<{socket: io.Socket}, TValue> {
       })
 		});
 
-		const url: string = "http://localhost:4000/tvalues/last";
+		const url: string =
+      "http://" + (process.env.REACT_APP_API_URL || "localhost:4000") + "/tvalues/last";
 		const res: Response = await fetch(url, {
 			method: 'GET',
 			headers: {

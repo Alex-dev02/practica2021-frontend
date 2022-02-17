@@ -6,7 +6,10 @@ import * as io from 'socket.io-client';
 
 
 function App() {
-  const socket: io.Socket = io.connect('ws://localhost:4000', { transports : ['websocket'] });
+  const socket: io.Socket = io.connect(
+    'ws://' + (process.env.REACT_APP_API_URL || "localhost:4000"),
+    { transports : ['websocket'] }
+  );
   return (
     <div>
       <div className='cards'>
