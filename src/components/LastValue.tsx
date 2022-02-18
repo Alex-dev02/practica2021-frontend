@@ -7,8 +7,8 @@ type TValue = {
 };
 
 export class LastValue extends Component<{socket: io.Socket}, TValue> {
-	constructor(props: any){
-		super(props);
+	constructor(socket: io.Socket){
+		super({socket});
 		this.state = {
 			value: "",
 			board: ""

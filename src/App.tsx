@@ -1,9 +1,7 @@
 import './App.css';
 import LastValue from './components/LastValue';
-import Title from './components/Title';
 
 import * as io from 'socket.io-client';
-
 
 function App() {
   const socket: io.Socket = io.connect(
@@ -14,7 +12,7 @@ function App() {
     <div>
       <div className='cards'>
         <div className='card'>
-          <Title></Title>
+          The last added value
           <LastValue socket={socket}></LastValue>
         </div>
       </div>
