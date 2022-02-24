@@ -6,9 +6,13 @@ type TValue = {
   board: string;
 };
 
-export class LastValue extends Component<{socket: Socket}, TValue> {
-  constructor(socket: Socket){
-		super({socket});
+type PropT = {
+  socket: Socket,
+}
+
+export class LastValue extends Component<PropT, TValue> {
+  constructor(props: PropT){
+		super(props);
 		this.state = {
 			value: "",
 			board: ""

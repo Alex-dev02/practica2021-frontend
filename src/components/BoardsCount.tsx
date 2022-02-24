@@ -1,9 +1,13 @@
 import { Component } from 'react'
 import { Socket } from 'socket.io-client'
 
-export default class BoardsCount extends Component<{socket: Socket}, {boardsCount: number}> {
-  constructor(socket: Socket){
-    super({socket});
+type PropT = {
+  socket: Socket,
+}
+
+export default class BoardsCount extends Component<PropT, {boardsCount: number}> {
+  constructor(props: PropT){
+    super(props);
     this.state = {
       boardsCount: 0
     }
