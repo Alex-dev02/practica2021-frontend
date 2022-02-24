@@ -6,7 +6,7 @@ import BoardsCount from './components/BoardsCount';
 
 function App() {
   const socket: io.Socket = io.connect(
-    'ws://' + (process.env.REACT_APP_API_URL || "localhost:4000"),
+    (process.env.REACT_APP_ENV === 'PROD' ? 'wss://' : 'ws://') + (process.env.REACT_APP_API_URL || "localhost:4000"),
     { transports : ['websocket'] }
   );
   return (
