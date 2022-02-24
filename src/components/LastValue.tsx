@@ -1,13 +1,13 @@
 import { Component } from 'react';
-import * as io from 'socket.io-client'
+import { Socket } from 'socket.io-client';
 
 type TValue = {
   value: string;
   board: string;
 };
 
-export class LastValue extends Component<{socket: io.Socket}, TValue> {
-	constructor(socket: io.Socket){
+export class LastValue extends Component<{socket: Socket}, TValue> {
+  constructor(socket: Socket){
 		super({socket});
 		this.state = {
 			value: "",
@@ -20,8 +20,8 @@ export class LastValue extends Component<{socket: io.Socket}, TValue> {
 		socket.on('new-tvalue', (tvalue: TValue) => {
       this.setState({
         value: tvalue.value,
-        board: data.boardId
-      })
+        board: tvalue.board
+      });
 		});
 
 		const url: string =
@@ -36,7 +36,7 @@ export class LastValue extends Component<{socket: io.Socket}, TValue> {
 		const data = await res.json();
 		this.setState({
 			value: data.value,
-			board: data.boardId
+			board: data.board.boardId
 		}); 
 	}
 

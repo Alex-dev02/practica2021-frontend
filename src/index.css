@@ -34,7 +34,7 @@ code {
 }
 
 .cards {
-  display: flex;
+  display: flexbox;
   margin: auto;
   width: 50%;
 }
