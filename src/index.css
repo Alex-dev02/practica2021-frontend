@@ -30,11 +30,13 @@ code {
   border-radius: 10%;
   padding: 3rem;
   margin: 2rem;
+  max-width: fit-content;
   background-color: #ffffff;
 }
 
 .cards {
-  display: flexbox;
+  display: flex;
+  flex-wrap: wrap;
   margin: auto;
   width: 50%;
 }

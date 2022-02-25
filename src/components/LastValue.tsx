@@ -28,8 +28,10 @@ export class LastValue extends Component<PropT, TValue> {
       });
 		});
 
-		const url: string =
-      "https://" + (process.env.REACT_APP_API_URL || "localhost:4000") + "/tvalues/last";
+		const url: string = 
+    process.env.REACT_APP_API_URL ?
+    "https://" + process.env.REACT_APP_API_URL + "/tvalues/last" :
+    "http://localhost:4000" + "/tvalues/last";
 		const res: Response = await fetch(url, {
 			method: 'GET',
 			headers: {

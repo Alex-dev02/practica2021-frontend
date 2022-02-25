@@ -22,7 +22,9 @@ export default class BoardsCount extends Component<PropT, {boardsCount: number}>
     });
 
     const url: string = 
-    "https://" + (process.env.REACT_APP_API_URL || "localhost:4000") + "/boards/count";
+    process.env.REACT_APP_API_URL ?
+    "https://" + process.env.REACT_APP_API_URL + "/boards/count" :
+    "http://localhost:4000" + "/boards/count";
     const res: Response = await fetch(url, {
 			method: 'GET',
 			headers: {
